@@ -35,7 +35,7 @@ const products = [
         'characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design',
         brand: 'Cannon',
         categoty: 'Electronics',
-        price: 329.99,
+        price: 929.99,
         countInStock: 5,
         rating: 3,
         numReviews: 12 
