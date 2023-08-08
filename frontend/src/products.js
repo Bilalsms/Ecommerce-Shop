@@ -14,7 +14,7 @@ const products = [
     },
 
     {
-        _id: 2,
+        _id: '2',
         name: 'Apple iPhone 11 Pro 256GB Memory',
         image: '/images/phone.jpg',
         description: 
@@ -28,7 +28,7 @@ const products = [
     },
 
     {
-        _id: 3,
+        _id: '3',
         name: 'Cannon EOS 80D DSLR Camera',
         image: '/images/camera.jpg',
         description: 
@@ -42,7 +42,7 @@ const products = [
     },
 
     {
-        _id: 4,
+        _id: '4',
         name: 'Sony Playstation 4 Pro White Version',
         image: '/images/playstation.jpg',
         description: 
@@ -56,7 +56,7 @@ const products = [
     },
 
     {
-        _id: 5,
+        _id: '5',
         name: 'Logitech G-Series Gaming Mouse',
         image: '/images/mouse.jpg',
         description: 
@@ -71,7 +71,7 @@ const products = [
 
 
     {
-        _id: 6,
+        _id: '6',
         name: 'Amazon Echo Dot 3rd Generation',
         image: '/images/alexa.jpg',
         description: 
