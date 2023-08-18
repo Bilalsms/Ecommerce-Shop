@@ -1,10 +1,9 @@
 import asyncHandler from "../middleware/asyncHandler.js"
 import Order from '../models/orderModel.js';
 
-
-// @desc Create new Order
-// @route POST /api/orders
-// @access Private
+// @desc    Create new Order
+// @route   POST /api/orders 
+// @access  Private
 const addOrderItems = asyncHandler(async (req, res) => {
     const {
         orderItems,
@@ -40,19 +39,17 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
 });
 
-
-// @desc Get logged in user orders
-// @route GET /api/orders/myorders
-// @access Private
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
 const getMyOrders = asyncHandler(async (req, res) => {
-    const orders = await Order.find({ user: req.user._id});
+    const orders = await Order.find({ user: req.user._id });
     res.status(200).json(orders);
 });
 
-
-// @desc Get order by ID
-// @route GET /api/orders/:id
-// @access Private
+// @desc    Get order by ID
+// @route   GET /api/orders/:id
+// @access  Private
 const getOrderById = asyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email');
 
@@ -65,11 +62,9 @@ const getOrderById = asyncHandler(async (req, res) => {
     }
 });
 
-
-
-// @desc Update order to paid
-// @route PUT /api/orders/:id/pay
-// @access Private
+// @desc    Update order to paid
+// @route   PUT /api/orders/:id/pay
+// @access  Private
 const updateOrderToPaid = asyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
 
@@ -92,23 +87,19 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     }
 });
 
-
-// @desc update to delivered
-// @route PUT /api/orders/:id/deliver
-// @access Private/Admin
+// @desc    Update to delivered
+// @route   PUT /api/orders/:id/deliver
+// @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
     res.send('Update order to delivered')
 });
 
-
-
-// @desc Get all orders
-// @route GET /api/orders
-// @access Private/Admin
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
 const getOrders = asyncHandler(async (req, res) => {
     res.send('Get all orders')
 });
-
 
 export {
     addOrderItems,
@@ -118,4 +109,3 @@ export {
     updateOrderToDelivered,
     getOrders,
 };
-
