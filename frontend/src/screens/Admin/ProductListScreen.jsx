@@ -1,8 +1,10 @@
 import { LinkContainer } from "react-router-bootstrap";
+import { useParams } from "react-router-dom";
 import { Table, Button, Row, Col } from "react-bootstrap";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
+import Paginate from "../../components/Paginate";
 import { toast } from "react-toastify";
 // import { useDispatch, useSelector } from "react-redux";
 import {
@@ -12,8 +14,11 @@ import {
 } from "../../slices/productsApiSlice";
 
 const ProductListScreen = () => {
-  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
-  console.log(products);
+  const { pageNumber } = useParams();
+  const { data, isLoading, error, refetch } = useGetProductsQuery({
+    pageNumber,
+  });
+  // console.log(products);
 
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
@@ -25,7 +30,7 @@ const ProductListScreen = () => {
     if (window.confirm(`Are you sure?`)) {
       try {
         await deleteProduct(id);
-        toast.success('Product deleted')
+        toast.success("Product deleted");
         refetch();
       } catch (err) {
         toast.error(err?.data?.message || err.error);
@@ -76,7 +81,7 @@ const ProductListScreen = () => {
             </thead>
 
             <tbody>
-              {products.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -101,6 +106,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
+          <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>
