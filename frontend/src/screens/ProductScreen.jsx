@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 import Rating from "../components/Rating";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -47,24 +48,24 @@ const ProductScreen = () => {
     navigate("/cart");
   };
 
-  const submitHandler = async(e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     try {
-        await createReview({
-            productId,
-            rating,
-            comment
-        }).unwrap();
-    
-        refetch();
-        toast.success("Review Submitted");
-        setRating(0);
-        setComment('');
+      await createReview({
+        productId,
+        rating,
+        comment,
+      }).unwrap();
+
+      refetch();
+      toast.success("Review Submitted");
+      setRating(0);
+      setComment("");
     } catch (err) {
-        toast.error(err?.data?.message || err.error);
+      toast.error(err?.data?.message || err.error);
     }
-  }
+  };
 
   return (
     <>
@@ -81,6 +82,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
